@@ -1,0 +1,55 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Hind Siliguri', 'Noto Sans Bengali', sans-serif; }
+body { background: linear-gradient(135deg, #1a1a2e, #16213e); min-height: 100vh; color: #eee; }
+.container { max-width: 720px; margin: 0 auto; padding: 24px 16px; }
+header { text-align: center; margin-bottom: 20px; }
+header h1 { font-size: 2rem; background: linear-gradient(90deg, #00d2ff, #928dff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+header p { color: #9aa5b1; margin-top: 6px; }
+
+.tabs { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+.tab { padding: 10px 16px; border: none; border-radius: 10px; background: #0f3460; color: #ccc; cursor: pointer; font-size: 0.95rem; transition: 0.2s; }
+.tab:hover { background: #16507f; }
+.tab.active { background: linear-gradient(90deg, #00d2ff, #928dff); color: #1a1a2e; font-weight: bold; }
+
+.panel { display: none; }
+.panel.active { display: block; animation: fadeIn 0.3s; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+.card { background: #0f3460aa; border-radius: 16px; padding: 20px; margin-bottom: 16px; backdrop-filter: blur(6px); }
+.card h2 { margin-bottom: 14px; font-size: 1.15rem; }
+
+/* ক্যালকুলেটর */
+.calculator { max-width: 340px; margin: 0 auto; }
+.calc-display { background: #0a0f1e; border-radius: 12px; padding: 18px; font-size: 1.8rem; text-align: right; margin-bottom: 12px; min-height: 60px; word-wrap: break-word; border: 1px solid #2a3f5f; }
+.calc-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.btn { padding: 14px; border: none; border-radius: 10px; background: #1a2a4a; color: #eee; font-size: 1.1rem; cursor: pointer; transition: 0.15s; }
+.btn:hover { background: #24406e; transform: scale(1.04); }
+.btn.op { background: #0f4c81; }
+.btn.danger { background: #c0392b; }
+.btn.equals { background: linear-gradient(90deg, #00d2ff, #928dff); color: #1a1a2e; font-weight: bold; }
+.btn.primary { background: linear-gradient(90deg, #00d2ff, #928dff); color: #1a1a2e; font-weight: bold; }
+.btn.big { width: 100%; margin-top: 10px; }
+
+/* কনভার্টার */
+input[type=number], input[type=text], select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #2a3f5f; background: #0a0f1e; color: #eee; font-size: 1rem; margin-bottom: 10px; }
+.result { background: #0a0f1e; border-radius: 10px; padding: 14px; margin-top: 6px; color: #00d2ff; font-size: 1.05rem; white-space: pre-line; }
+
+/* পাসওয়ার্ড */
+.pass-display { background: #0a0f1e; border-radius: 10px; padding: 16px; text-align: center; font-family: monospace; font-size: 1.2rem; letter-spacing: 1px; color: #00d2ff; margin-bottom: 14px; word-break: break-all; cursor: pointer; border: 1px dashed #2a3f5f; }
+.pass-controls label { display: block; margin: 8px 0; color: #c9d4e0; }
+.strength { height: 8px; border-radius: 6px; background: #0a0f1e; margin: 12px 0; overflow: hidden; }
+.strength::after { content: ''; display: block; height: 100%; width: 0; transition: 0.3s; }
+.strength.weak::after { width: 33%; background: #e74c3c; }
+.strength.medium::after { width: 66%; background: #f39c12; }
+.strength.strong::after { width: 100%; background: #2ecc71; }
+
+/* টু-ডু */
+.todo-input { display: flex; gap: 8px; margin-bottom: 14px; }
+.todo-input input { flex: 1; margin-bottom: 0; }
+.todo-list { list-style: none; }
+.todo-list li { display: flex; align-items: center; gap: 10px; background: #0a0f1e; border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; }
+.todo-list li.done span { text-decoration: line-through; color: #7f8c9b; }
+.todo-list span { flex: 1; }
+.todo-list .del { background: #c0392b; border: none; color: #fff; border-radius: 8px; padding: 6px 10px; cursor: pointer; }
+
+footer { text-align: center; margin-top: 28px; color: #7f8c9b; font-size: 0.9rem; }
+footer a { color: #00d2ff; }
