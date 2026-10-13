@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>বাংলা টুলকিট</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>🛠️ বাংলা টুলকিট</h1>
+    <p>সব দরকারি টুল এক জায়গায় — ক্যালকুলেটর, কনভার্টার, পাসওয়ার্ড জেনারেটর ও টু-ডু লিস্ট</p>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="calc">🧮 ক্যালকুলেটর</button>
+    <button class="tab" data-tab="convert">📐 কনভার্টার</button>
+    <button class="tab" data-tab="pass">🔐 পাসওয়ার্ড</button>
+    <button class="tab" data-tab="todo">✅ টু-ডু</button>
+  </nav>
+
+  <!-- ক্যালকুলেটর -->
+  <section id="calc" class="panel active">
+    <div class="calculator">
+      <div class="calc-display" id="calcDisplay">0</div>
+      <div class="calc-buttons">
+        <button class="btn danger" onclick="clearCalc()">C</button>
+        <button class="btn" onclick="appendCalc('(')">(</button>
+        <button class="btn" onclick="appendCalc(')')">)</button>
+        <button class="btn op" onclick="appendCalc('/')">÷</button>
+        <button class="btn" onclick="appendCalc('7')">7</button>
+        <button class="btn" onclick="appendCalc('8')">8</button>
+        <button class="btn" onclick="appendCalc('9')">9</button>
+        <button class="btn op" onclick="appendCalc('*')">×</button>
+        <button class="btn" onclick="appendCalc('4')">4</button>
+        <button class="btn" onclick="appendCalc('5')">5</button>
+        <button class="btn" onclick="appendCalc('6')"">6</button>
+        <button class="btn op" onclick="appendCalc('-')">−</button>
+        <button class="btn" onclick="appendCalc('1')">1</button>
+        <button class="btn" onclick="appendCalc('2')">2</button>
+        <button class="btn" onclick="appendCalc('3')">3</button>
+        <button class="btn op" onclick="appendCalc('+')">+</button>
+        <button class="btn" onclick="appendCalc('0')">0</button>
+        <button class="btn" onclick="appendCalc('.')">.</button>
+        <button class="btn" onclick="backspace()">⌫</button>
+        <button class="btn equals" onclick="calculate()">=</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- কনভার্টার -->
+  <section id="convert" class="panel">
+    <div class="card">
+      <h2>📏 দৈর্ঘ্য</h2>
+      <input type="number" id="lenValue" placeholder="মান লিখুন" oninput="convertLength()">
+      <select id="lenFrom" onchange="convertLength()">
+        <option value="km">কিলোমিটার</option>
+        <option value="mile">মাইল</option>
+        <option value="m">মিটার</option>
+        <option value="ft">ফুট</option>
+      </select>
+      <div class="result" id="lenResult">—</div>
+    </div>
+    <div class="card">
+      <h2>⚖️ ওজন</h2>
+      <input type="number" id="wtValue" placeholder="মান লিখুন" oninput="convertWeight()">
+      <select id="wtFrom" onchange="convertWeight()">
+        <option value="kg">কিলোগ্রাম</option>
+        <option value="lb">পাউন্ড</option>
+        <option value="g">গ্রাম</option>
+      </select>
+      <div class="result" id="wtResult">—</div>
+    </div>
+    <div class="card">
+      <h2>🌡️ তাপমাত্রা</h2>
+      <input type="number" id="tempValue" placeholder="মান লিখুন" oninput="convertTemp()">
+      <select id="tempFrom" onchange="convertTemp()">
+        <option value="c">সেলসিয়াস (°C)</option>
+        <option value="f">ফারেনহাইট (°F)</option>
+      </select>
+      <div class="result" id="tempResult">—</div>
+    </div>
+  </section>
+
+  <!-- পাসওয়ার্ড জেনারেটর -->
+  <section id="pass" class="panel">
+    <div class="card">
+      <h2>🔐 পাসওয়ার্ড জেনারেটর</h2>
+      <div class="pass-display" id="passDisplay">ক্লিক করে তৈরি করুন</div>
+      <div class="pass-controls">
+        <label>দৈর্ঘ্য: <span id="passLenVal">16</span></label>
+        <input type="range" id="passLen" min="4" max="64" value="16" oninput="document.getElementById('passLenVal').textContent=this.value">
+        <label><input type="checkbox" id="optUpper" checked> বড় হাতের অক্ষর (A-Z)</label>
+        <label><input type="checkbox" id="optLower" checked> ছোট হাতের অক্ষর (a-z)</label>
+        <label><input type="checkbox" id="optNum" checked> সংখ্যা (0-9)</label>
+        <label><input type="checkbox" id="optSym"> প্রতীক (!@#$)</label>
+      </div>
+      <div class="strength" id="strength"></div>
+      <button class="btn primary big" onclick="genPassword()">🎲 তৈরি করুন</button>
+      <button class="btn big" onclick="copyPassword()">📋 কপি করুন</button>
+    </div>
+  </section>
+
+  <!-- টু-ডু -->
+  <section id="todo" class="panel">
+    <div class="card">
+      <h2>✅ টু-ডু লিস্ট</h2>
+      <div class="todo-input">
+        <input type="text" id="todoText" placeholder="নতুন কাজ লিখুন..." onkeydown="if(event.key==='Enter')addTodo()">
+        <button class="btn primary" onclick="addTodo()">যোগ করুন</button>
+      </div>
+      <ul class="todo-list" id="todoList"></ul>
+    </div>
+  </section>
+
+  <footer>❤️ দিয়ে বানানো — <a href="https://github.com/outerrouter/bangla-toolkit">GitHub</a></footer>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
